@@ -1,1 +1,1 @@
-export const WEBSITE_URL = 'https://gigi-kuffa.vercel.app'
+export const WEBSITE_URL = 'https://gkdot.vercel.app'
