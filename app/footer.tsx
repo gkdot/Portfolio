@@ -74,6 +74,7 @@ export function Footer() {
           <TextLoop className="text-xs text-zinc-500">
             <span>© {new Date().getFullYear()} Gigi Kuffa.</span>
             <span>Made with love.</span>
+            <span>Built with Next.js, React, Tailwind, and Motion.</span>
           </TextLoop>
         </a>
         <div className="text-xs text-zinc-400">

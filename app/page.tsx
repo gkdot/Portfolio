@@ -79,13 +79,8 @@ function ProjectVideo({ src }: ProjectVideoProps) {
   )
 }
 
-export const useShowProjects = () => {
-  const [showProjects, setShowProjects] = useState(false)
-  return { showProjects, setShowProjects }
-}
-
 export default function Personal() {
-  const { showProjects, setShowProjects } = useShowProjects();
+  const [showProjects, setShowProjects] = useState(false)
 
   if (showProjects) {
     return <ProjectsPage />

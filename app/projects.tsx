@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { PROJECTS, ProjectVideoProps } from './data'
 import { ArrowUpRight, Trophy } from 'lucide-react'
-import Personal, { useShowProjects } from './page'
+import Personal from './page'
 
 type Project = {
   name: string
@@ -28,7 +28,6 @@ function ProjectVideo({ src }: ProjectVideoProps) {
 export default function ProjectsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const { showProjects, setShowProjects } = useShowProjects();
 
   const allTags = Array.from(
     new Set(PROJECTS.flatMap((project) => project.tags))
