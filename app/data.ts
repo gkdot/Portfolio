@@ -50,7 +50,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     company: 'Walt Disney Imagineering',
     title: 'Software Developer Intern',
     start: 'May 2025',
-    end: 'Present',
+    end: 'Aug 2025',
     link: 'https://sites.disney.com/waltdisneyimagineering/',
     id: 'work1',
   },
@@ -79,7 +79,7 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS = [
   {
     label: 'Resume',
-    link: 'https://www.resume.lol/share/al035y7',
+    link: 'https://www.resume.lol/share/pa03oxp',
   },
   {
     label: 'Twitter',
