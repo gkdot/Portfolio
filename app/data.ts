@@ -78,6 +78,10 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const SOCIAL_LINKS = [
   {
+    label: 'Resume',
+    link: 'https://www.resume.lol/share/al035y7',
+  },
+  {
     label: 'Twitter',
     link: 'https://x.com/GKD0T',
   },
