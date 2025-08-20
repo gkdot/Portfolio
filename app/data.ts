@@ -57,7 +57,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Freelance',
     title: 'Web Designer',
-    start: 'Feb',
+    start: 'Feb 2025',
     end: 'May 2025',
     link: '',
     id: 'work2',
@@ -65,7 +65,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Black Cape',
     title: 'Technologist Intern',
-    start: 'May',
+    start: 'May 2024',
     end: 'Dec 2024',
     link: 'https://blackcape.io/products/rubicon',
     id: 'work3',
@@ -95,4 +95,4 @@ export const SOCIAL_LINKS = [
   },
 ]
 
-export const EMAIL = 'gigikuffa@gmail.com'
+export const EMAIL = 'jdkuffa@gmail.com'

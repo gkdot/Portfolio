@@ -165,7 +165,7 @@ export default function Personal() {
                       <p className="text-zinc-500 dark:text-zinc-400">{job.company}</p>
                     </div>
                     <p className="text-zinc-600 dark:text-zinc-400">
-                      {job.start} - {job.end}
+                      {job.start.slice(-4) == job.end.slice(-4) ? job.start.substring(0,3) : job.start} - {job.end}
                     </p>
                   </div>
                 </div>
