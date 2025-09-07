@@ -1,12 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowUpRight, XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { MagneticLink } from '@/components/magnetic-link'
 import { PROJECTS, WORK_EXPERIENCE, EMAIL, SOCIAL_LINKS } from './data'
+import type { ProjectVideoProps } from './data'
 import ProjectsPage from './projects'
-import { useState } from 'react'
 import Particles from '@/components/ui/particles'
 import { MorphingDialog, MorphingDialogTrigger, MorphingDialogContainer, MorphingDialogContent, MorphingDialogClose } from '@/components/ui/morphing-dialog'
 
@@ -29,54 +30,79 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
-type ProjectVideoProps = {
-  src: string
-}
+function ProjectVideo({ src, name }: ProjectVideoProps) {
+  const isYouTube = src.includes("youtube.com") || src.includes("youtu.be");
 
-function ProjectVideo({ src }: ProjectVideoProps) {
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
+  const getYouTubeEmbedUrl = (url: string) => {
+    let embedUrl = url.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/");
+    // autoplay + mute for browser compatibility
+    return embedUrl + "?autoplay=1&mute=1";
+  };
+
+  const VideoContent = () => {
+    if (isYouTube) {
+      return (
+        <iframe
+          src={getYouTubeEmbedUrl(src)}
+          title="Project Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
         />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+      );
+    }
+
+    return (
+      <video
+        src={src}
+        autoPlay
+        loop
+        muted
+        controls
+        className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+      />
+    );
+  };
+
+  return (
+    <MorphingDialog transition={{ type: "spring", bounce: 0, duration: 0.3 }}>
+      <MorphingDialogTrigger>
+        {isYouTube ? (
+          <div
+            className="relative aspect-video w-full cursor-zoom-in rounded-xl"
+            style={{
+              backgroundImage: `/${name}`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-12 w-12 rounded-full bg-white/80 flex items-center justify-center">
+                ▶
+              </div>
+            </div>
+          </div>
+        ) : (
           <video
             src={src}
             autoPlay
             loop
             muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            className="aspect-video w-full cursor-zoom-in rounded-xl"
           />
+        )}
+      </MorphingDialogTrigger>
+
+      <MorphingDialogContainer>
+        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          <VideoContent />
         </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
+        <MorphingDialogClose className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1">
           <XIcon className="h-5 w-5 text-zinc-500" />
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>
-  )
+  );
 }
 
 export default function Personal() {
@@ -116,7 +142,7 @@ export default function Personal() {
             {PROJECTS.map((project) => (
               <div key={project.name} className="space-y-2">
                 <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                  <ProjectVideo src={project.video} />
+                  <ProjectVideo src={project.video ?? ""} name={project.name} />
                 </div>
                 <div className="px-1">
                   <a
@@ -133,7 +159,7 @@ export default function Personal() {
             ))}
 
             <button
-              className="flex right-auto max-w-fit rounded-xl px-3 py-2 text-sm font-medium text-white bg-zinc-900 
+              className="max-w-60 max-h-12 right-auto max-w-fit rounded-xl px-3 py-2 text-sm font-medium text-white bg-zinc-900 
                           hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 hover:outline-none
                           dark:text-black dark:bg-white dark:hover:bg-zinc-800 dark:hover:text-white transition"
               onClick={() => setShowProjects(true)}

@@ -5,14 +5,6 @@ import { PROJECTS, ProjectVideoProps } from './data'
 import { ArrowUpRight, Trophy } from 'lucide-react'
 import Personal from './page'
 
-type Project = {
-  name: string
-  description: string
-  tags?: string[]
-  link: string
-  video?: string
-}
-
 function ProjectVideo({ src }: ProjectVideoProps) {
   return (
     <video
@@ -89,7 +81,7 @@ export default function ProjectsPage() {
             </div>
             <div className="px-1">
               <a
-                className="font-medium text-lg text-blue-600 hover:underline"
+                className="font-medium text-lg"
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -111,9 +103,10 @@ export default function ProjectsPage() {
           </div>
         ))}
         <button
-          className="flex right-auto max-w-fit rounded-xl px-3 py-2 text-sm font-medium text-white bg-zinc-900 
-          hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 hover:outline-none
-          dark:text-black dark:bg-white dark:hover:bg-zinc-800 dark:hover:text-white transition"
+          className="max-w-60 max-h-12 right-auto max-w-fit rounded-xl px-3 py-2 text-sm font-medium 
+          text-white bg-zinc-900 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 
+          hover:outline-none dark:text-black dark:bg-white dark:hover:bg-zinc-800 dark:hover:text-white 
+          transition"
           onClick={() => window.location.href = '/'}
         >
           Go back to portfolio <ArrowUpRight size={16} />

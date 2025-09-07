@@ -5,8 +5,8 @@ type Project = {
   description: string
   tags?: string[]
   link: string
-  video: string
-  id: string
+  video?: string
+  id: number
 }
 
 type WorkExperience = {
@@ -15,14 +15,14 @@ type WorkExperience = {
   start: string
   end: string
   link: string
-  id: string
+  id: number
 }
 
 type BlogPost = {
   title: string
   description: string
   link: string
-  uid: string
+  uid: number
 }
 
 type SocialLink = {
@@ -32,6 +32,7 @@ type SocialLink = {
 
 export type ProjectVideoProps = {
   src: string
+  name?: string
 }
 
 export const ROLES = [
@@ -42,7 +43,14 @@ export const ROLES = [
 ]
 
 export const PROJECTS: Project[] = [
-  // Add projects here
+  {
+    name: 'syllabary',
+    description: 'Web app that transforms course syllabi into calendar-ready tasks and events',
+    tags: ['react', 'typescript', 'vite', 'tailwind', 'firebase'],
+    link: 'https://syllabary.vercel.app/',
+    video: 'https://youtu.be/D_jCcPSwq5g',
+    id: 1,
+  }
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
@@ -52,7 +60,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: 'May 2025',
     end: 'Aug 2025',
     link: 'https://sites.disney.com/waltdisneyimagineering/',
-    id: 'work1',
+    id: 3,
   },
   {
     company: 'Freelance',
@@ -60,7 +68,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: 'Feb 2025',
     end: 'May 2025',
     link: '',
-    id: 'work2',
+    id: 2,
   },
   {
     company: 'Black Cape',
@@ -68,7 +76,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: 'May 2024',
     end: 'Dec 2024',
     link: 'https://blackcape.io/products/rubicon',
-    id: 'work3',
+    id: 1,
   },
 ]
 
